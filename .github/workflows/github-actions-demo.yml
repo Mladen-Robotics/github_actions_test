@@ -7,6 +7,8 @@ jobs:
     name: Get system status...
     permissions: write-all
     runs-on: macos-latest
+    outputs:
+      "directory content": steps."Scan the content of the current repo and print out python script".outputs.content
     defaults:
       run:
         working-directory: .
@@ -25,6 +27,13 @@ jobs:
       - name: Scan the content of the current repo and print out python script
         run: |
           ls -l
+          echo "content=$(ls -l)" >> "$GITHUB_OUTPUT"
           cat main.py
-        
+  read_output:
+    name: Read output
+    runs-on: 	ubuntu-latest
+    needs: "get_status"
+    steps:
+      - name: Print working directory output from previous job
+        run: echo ${{needs.get_status.outputs."directory content"}}
       
