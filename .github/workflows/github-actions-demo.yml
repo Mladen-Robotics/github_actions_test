@@ -7,6 +7,9 @@ jobs:
     name: Get system status...
     permissions: write-all
     runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: .
     env:
       name: Mladen
       age: 16
@@ -17,3 +20,11 @@ jobs:
         run: |
             echo name = ${{env.name}} age = ${{env.age}}
             echo global var = ${{vars.GLOBAL_VAR}}
+      - name : Check out current repo
+        uses: actions/checkout@v4.2.2
+      - name: Scan the content of the current repo and print out python script
+        run: |
+          ls -l
+          cat main.py
+        
+      
