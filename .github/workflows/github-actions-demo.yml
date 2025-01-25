@@ -12,4 +12,8 @@ jobs:
       age: 16
     steps:
       - name: Print test message using echo
-        run: echo Hello World from MacOS {{runner.name}} {{runner.os}}
+        run: echo Hello World from MacOS ${{runner.name}} ${{runner.os}}
+      - name: Test env vars
+        run: |
+            echo name = ${{env.name}} age = ${{env.age}}
+            echo global var = ${{vars.GLOBAL_VAR}}
