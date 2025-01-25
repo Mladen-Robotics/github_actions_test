@@ -1,4 +1,5 @@
 name: Print status
+run-name: Get system information
 on: push
 
 jobs:
