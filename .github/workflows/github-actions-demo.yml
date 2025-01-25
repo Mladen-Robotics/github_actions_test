@@ -8,7 +8,7 @@ jobs:
     permissions: write-all
     runs-on: macos-latest
     outputs:
-      "directory content": steps."Scan the content of the current repo and print out python script".outputs.content
+      directory_content: steps."Scan the content of the current repo and print out python script".outputs.content
     defaults:
       run:
         working-directory: .
@@ -35,5 +35,5 @@ jobs:
     needs: "get_status"
     steps:
       - name: Print working directory output from previous job
-        run: echo ${{needs.get_status.outputs."directory content"}}
+        run: echo ${{needs.get_status.outputs.directory_content}}
       
